@@ -1,0 +1,76 @@
+[user]
+  # Force me to set the mail on a per-repo basis
+  name  = "(none)"
+  email = "(none)"
+  useConfigOnly = true
+[commit]
+  template = ~/.gitcommit_template
+[push]
+  default = current
+[core]
+  excludesfile = ~/.gitignore_global
+  pager = less -r
+[help]
+  autocorrect = 20
+[color]
+  ui = always
+[alias]
+  aa             = add --all
+  ap             = add --patch
+  br             = branch -vv -a
+  branches       = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+  ca             = commit --amend -v
+  cv             = commit -v
+  cm             = commit -m
+  co             = checkout
+  co-pr          = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+  ctags          = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+  df             = diff
+  dfc            = diff --cached
+  dsf            = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+  dt             = difftool
+  dtc            = difftool --cached
+  forget         = rm --cached
+  ignore         = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+  latest         = log --no-merges -1 HEAD -p
+  lg             = log --author-date-order -n 25 --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%ar%C(reset) %C(bold yellow)%d%C(reset) %C(dim white)- %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+  lga            = log --author-date-order -n 25 --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%ar%C(reset) %C(bold yellow)%d%C(reset) %C(dim white)- %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  ls             = ls-tree --full-name --full-tree --abbrev=1 -r HEAD
+  lt             = log --stat -n 25 --decorate --find-renames --pretty=short
+  meld           = difftool -y -t meld
+  mt             = mergetool
+  please         = push --force-with-lease
+  re             = remote -v
+  settings       = config -l
+  set-mail       = config user.email
+  set-name       = config user.name
+  st             = status --short --branch
+  sup            = submodule update --init --recursive
+  update         = remote update --prune
+  vimdiff        = difftool -y -t vimdiff
+  whoami         = !sh -c 'git config user.name && git config user.email'
+  zip            = !sh -c 'git archive --format=tar --prefix=$(basename $PWD)/ $1 | gzip -9 > $(basename $PWD)-$1.tar.gz' -
+  # Branch related stuff
+  create-branch  = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
+  delete-branch  = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
+  merge-branch   = !git checkout master && git merge @{-1}
+  rename-branch  = !sh -c 'old=$(git current-branch) && git branch -m $old $1 && git push origin --set-upstream $1 && git push origin --delete $old' -
+[merge]
+  tool = fugitive
+[mergetool]
+  prompt = false
+[mergetool "fugitive"]
+  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[diff]
+  tool = vimdiff
+  algorithm = histogram
+[difftool]
+  prompt = false
+[pager]
+  color = false
+  show = vim -R -
+[pull]
+  rebase = preserve
+[include]
+  path = ~/.gitconfig.local

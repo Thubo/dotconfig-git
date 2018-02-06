@@ -1,0 +1,6 @@
+*
+!/.gitcommit_template
+!/.gitconfig
+!/.gitignore.d
+!/.gitignore.d/git
+!/.gitignore_global
