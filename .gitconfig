@@ -40,12 +40,14 @@
   meld           = difftool -y -t meld
   mt             = mergetool
   please         = push --force-with-lease
+  pp             = !sh -c 'git pull && git push'
   re             = remote -v
   settings       = config -l
   set-mail       = config user.email
   set-name       = config user.name
   st             = status --short --branch
   sup            = submodule update --init --recursive
+  tags           = log --tags --no-walk --date=iso-local --pretty='%C(auto)%h %cd%d %s'
   update         = remote update --prune
   vimdiff        = difftool -y -t vimdiff
   whoami         = !sh -c 'git config user.name && git config user.email'
