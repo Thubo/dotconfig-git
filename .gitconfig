@@ -7,6 +7,7 @@
   template = ~/.gitcommit_template
 [push]
   default = current
+  recurseSubmodules = no
 [core]
   excludesfile = ~/.gitignore_global
   pager = less -r
@@ -76,3 +77,5 @@
   rebase = preserve
 [include]
   path = ~/.gitconfig.local
+[submodule]
+	recurse = true
