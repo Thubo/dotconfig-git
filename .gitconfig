@@ -74,7 +74,7 @@
   color = false
   show = vim -R -
 [pull]
-  rebase = preserve
+  rebase = merges
 [include]
   path = ~/.gitconfig.local
 [submodule]
