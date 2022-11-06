@@ -1,3 +1,5 @@
+[init]
+  defaultBranch = main
 [user]
   # Force me to set the mail on a per-repo basis
   name  = "(none)"
