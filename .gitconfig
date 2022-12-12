@@ -42,6 +42,7 @@
   lt             = log --stat -n 25 --decorate --find-renames --pretty=short
   meld           = difftool -y -t meld
   mt             = mergetool
+  patch          = diff -p --no-color
   please         = push --force-with-lease
   pp             = !sh -c 'git pull && git push'
   re             = remote -v
