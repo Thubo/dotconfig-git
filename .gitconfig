@@ -10,6 +10,7 @@
 [push]
   default = current
   recurseSubmodules = no
+  autoSetupRemote = true
 [core]
   excludesfile = ~/.gitignore_global
   pager = less -r
