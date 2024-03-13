@@ -2,18 +2,18 @@
   defaultBranch = main
 [user]
   # Force me to set the mail on a per-repo basis
-  name  = "(none)"
-  email = "(none)"
+  name          = "(none)"
+  email         = "(none)"
   useConfigOnly = true
 [commit]
   template = ~/.gitcommit_template
 [push]
-  default = current
+  default           = current
   recurseSubmodules = no
-  autoSetupRemote = true
+  autoSetupRemote   = true
 [core]
   excludesfile = ~/.gitignore_global
-  pager = less -r
+  pager        = less -r
 [help]
   autocorrect = 20
 [color]
@@ -26,6 +26,7 @@
   ca             = commit --amend -v
   cm             = commit -m
   co             = checkout
+  cob            = checkout -b
   co-pr          = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
   ctags          = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
   cv             = commit -v
@@ -71,16 +72,21 @@
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [diff]
-  tool = vimdiff
+  tool      = vimdiff
   algorithm = histogram
 [difftool]
   prompt = false
 [pager]
   color = false
-  show = vim -R -
+  show  = vim -R -
 [pull]
   rebase = merges
 [include]
   path = ~/.gitconfig.local
 [submodule]
 	recurse = true
+[filter "lfs"]
+  clean    = git-lfs clean -- %f
+  smudge   = git-lfs smudge -- %f
+  process  = git-lfs filter-process
+  required = true
