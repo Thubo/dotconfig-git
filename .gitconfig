@@ -59,7 +59,7 @@
   whoami         = !sh -c 'git config user.name && git config user.email'
   zip            = !sh -c 'git archive --format=tar --prefix=$(basename $PWD)/ $1 | gzip -9 > $(basename $PWD)-$1.tar.gz' -
   # Branch related stuff
-	clean-branches = "!f() { git fetch --prune && git branch --no-color --merged | grep -v \"main\\|master\\|cluster-consolidation\\|*\" | xargs git branch -D; }; f"
+  clean-branches = "!f() { git fetch --prune && git branch --no-color --merged | grep -v \"main\\|master\\|cluster-consolidation\\|*\" | xargs git branch -D; }; f"
   create-branch  = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
   current-branch = !sh -c 'git rev-parse --abbrev-ref HEAD' -
   delete-branch  = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
@@ -84,7 +84,7 @@
 [include]
   path = ~/.gitconfig.local
 [submodule]
-	recurse = true
+  recurse = true
 [filter "lfs"]
   clean    = git-lfs clean -- %f
   smudge   = git-lfs smudge -- %f
